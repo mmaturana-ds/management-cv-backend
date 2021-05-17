@@ -86,6 +86,12 @@ public class AuthController {
     }
     
 	@PreAuthorize("hasRole('ROLE_USER')")
+    @GetMapping("/validate")
+    public ResponseEntity<Boolean> validate(){
+        return new ResponseEntity<Boolean>(true, HttpStatus.OK);
+    }
+    
+	@PreAuthorize("hasRole('ROLE_USER')")
 	@PutMapping("/update/{nombre}")
 	public ResponseEntity<?> update(@PathVariable("nombre") String nombreUsuario, @RequestBody NuevoUsuario usuarioDetails, HttpServletRequest req) {
 		if(!usuarioService.existsByNombreUsuario(nombreUsuario))
